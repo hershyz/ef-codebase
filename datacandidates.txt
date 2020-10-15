@@ -1,2 +1,3 @@
 https://datahub.io/machine-learning/seismic-bumps
 https://datahub.io/machine-learning/breast-w
+https://datahub.io/machine-learning/iris
