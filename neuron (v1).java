@@ -24,7 +24,6 @@ public class Neuron {
         }
 
         //Finds baseline intercept through average of outputs:
-        double min = Double.MAX_VALUE;
         for (int i = 0; i < outputs.size(); i++) {
             intercept = intercept + outputs.get(i);
         }
@@ -93,11 +92,9 @@ public class Neuron {
                 //Adjusts weights according to error:
                 double error = test - real;
                 for (int i = 0; i < weights.length; i++) {
-                    error = (error * inputs.get(row)[i]) / 10000000;
+                    error = (error * inputs.get(row)[i]) / 100000000;
                     weights[i] = weights[i] - error;
-                    //System.out.println("weights[" + i + "]: " + weights[i]);
                 }
-                //System.out.println("---------------");
 
                 passedCycles++;
             }
@@ -118,10 +115,5 @@ public class Neuron {
     //Return weights:
     public static double[] getWeights() {
         return weights;
-    }
-
-    //Return intercept:
-    public static double getIntercept() {
-        return intercept;
     }
 }
