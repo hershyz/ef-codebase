@@ -21,11 +21,11 @@ public class Main {
         //Training sequence:
         if (input.equals("1")) {
 
-            System.out.print("Input CSV: ");
+            System.out.print("Input CSV:  ");
             String path = scn.nextLine();
             CSVParser csvParser = new CSVParser(path);
-            System.out.print("Desired error margin: ");
-            double margin = scn.nextDouble();
+            System.out.print("Epochs:     ");
+            int epochs = scn.nextInt();
 
             List<List<Double>> inputs = csvParser.getInputs();
             List<Double> outputs = csvParser.getOutputs();
@@ -41,7 +41,7 @@ public class Main {
             }
 
             Neuron neuron = new Neuron(formattedInputs, outputs);
-            neuron.train(margin);
+            neuron.train(epochs);
 
             System.out.print("Model location: ");
             String model = scn.next();
@@ -52,9 +52,9 @@ public class Main {
         //Prediction sequence:
         if (input.equals("2")) {
 
-            System.out.print("Input CSV:         ");
+            System.out.print("Input CSV:       ");
             String in = scn.nextLine();
-            System.out.print("Model location:    ");
+            System.out.print("Model location:  ");
             String model = scn.nextLine();
 
             PredictionService.predict(in, model);

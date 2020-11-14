@@ -48,14 +48,13 @@ public class Neuron {
     }
 
     //Train:
-    public static void train(double errorMargin) {
+    public static void train(int epochs) {
 
         startTime = System.nanoTime();
         int passedCycles = 0;
 
-        //Trains until the program self determines that it is finished training:
-        boolean trainingFinished = false;
-        while (!trainingFinished && passedCycles < 1000000000) {
+        //Trains until epochs are complete:
+        while (passedCycles <= epochs) {
 
             int row = 0;
             int column = 0;
@@ -66,18 +65,6 @@ public class Neuron {
                 double real = outputs.get(row);
                 for (column = 0; column < inputs.get(row).length; column++) {
                     test = test + (inputs.get(row)[column] * weights[column]);
-                }
-
-                //Terminates if value is within error margin:
-                double min = real - errorMargin;
-                double max = real + errorMargin;
-                if (test >= min) {
-                    if (test <= max) {
-                        System.out.print("(Line " + (row + 1) + "): ");
-                        System.out.println("Prediction: " + test + ", Real: " + real);
-                        trainingFinished = true;
-                        break;
-                    }
                 }
 
                 //Adjusts weights according to error:
@@ -95,7 +82,7 @@ public class Neuron {
         elapsedTime = elapsedTime / 1000000;
 
         //Displays final weights:
-        System.out.println("Training completed. Epochs completed: " + passedCycles);
+        System.out.println("Training completed...");
         System.out.println("Time elapsed: " + elapsedTime + " ms");
         for (int i = 0; i < weights.length; i++) {
             System.out.println("Final Weights[" + i + "]: " + weights[i]);
